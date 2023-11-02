@@ -1,0 +1,11 @@
+file_format: '1'
+id: mable
+name: mable glp
+type: shield
+url: https://github.com/eswai/mable
+requires: [seeeduino_xiao_ble]
+features:
+  - keys
+siblings:
+  - mable_left
+  - mable_right

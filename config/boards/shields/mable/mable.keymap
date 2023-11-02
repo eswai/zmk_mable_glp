@@ -1,0 +1,359 @@
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/outputs.h>
+
+#define HOST_OS 2
+#include "unicode.h"
+
+#define DEFAULT  0
+#define NAGINATA 1
+#define LOWER    2
+#define RAISE    3
+#define ADJUST   4
+
+#define CONFIG_ZMK_MACRO_DEFAULT_WAIT_MS 40
+#define CONFIG_ZMK_MACRO_DEFAULT_TAP_MS 40
+
+ZMK_UNICODE_SINGLE(nagaguro, N3, N0, F, B) // ・
+ZMK_UNICODE_SINGLE(tenten,   N2, N0, N2, N6) // …
+ZMK_UNICODE_SINGLE(zhyphen,  N2, N0, N1, N5) // ―
+ZMK_UNICODE_SINGLE(maru,     N3, N0, N0, N7) // 〇
+ZMK_UNICODE_SINGLE(batsu,    C, N3, N9, N7) // ×
+ZMK_UNICODE_SINGLE(kakko1l,  N3, N0, N0, C) // 「
+ZMK_UNICODE_SINGLE(kakko1r,  N3, N0, N0, D) // 」
+ZMK_UNICODE_SINGLE(kakko2l,  N3, N0, N0, E) // 『
+ZMK_UNICODE_SINGLE(kakko2r,  N3, N0, N0, F) // 』
+ZMK_UNICODE_SINGLE(kakko3l,  N3, N0, N1, N0) // 【
+ZMK_UNICODE_SINGLE(kakko3r,  N3, N0, N1, N1) // 】
+ZMK_UNICODE_SINGLE(kakko4l,  N3, N0, N0, A) // 《
+ZMK_UNICODE_SINGLE(kakko4r,  N3, N0, N0, B) // 》
+ZMK_UNICODE_SINGLE(kakko5l,  F, F, N0, N8) // （
+ZMK_UNICODE_SINGLE(kakko5r,  F, F, N0, N9) // ）
+
+/ {
+
+    conditional_layers {
+        compatible = "zmk,conditional-layers";
+        tri_layer {
+            if-layers = <2 3>;
+            then-layer = <4>;
+        };
+    };
+
+    macros {
+        ng_on: ng_on {
+            label = "ZM_ng_on";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_tap &kp LANGUAGE_1 &kp INTERNATIONAL_4 &to 1>
+                ;
+        };
+        ng_off: ng_off {
+            label = "ZM_ng_off";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_tap &kp LANGUAGE_2 &kp INTERNATIONAL_5 &to 0>
+                ;
+        };
+
+        dhi: dhi {
+            label = "ZM_dhi";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_tap &kp D &kp H &kp I>
+                ;
+        };
+
+        s_end_bs: s_end_bs {
+            label = "ZM_s_end_bs";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_tap &kp LS(END) &kp BSPC>
+                ;
+        };
+
+        esc3: esc3 {
+            label = "ZM_esc3";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_tap &kp ESC &kp ESC &kp ESC>
+                ;
+        };
+
+        ent_end: ent_end {
+            label = "ZM_ent_end";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_tap &kp ENTER &kp END>
+                ;
+        };
+
+        s_up7: s_up7 {
+            label = "ZM_s_up7";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp LSHFT>
+                , <&macro_tap &kp UP &kp UP &kp UP &kp UP &kp UP &kp UP &kp UP>
+                , <&macro_release &kp LSHFT>
+                ;
+        };
+
+        s_down7: s_down7 {
+            label = "ZM_s_down7";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp LSHFT>
+                , <&macro_tap &kp DOWN &kp DOWN &kp DOWN &kp DOWN &kp DOWN &kp DOWN &kp DOWN>
+                , <&macro_release &kp LSHFT>
+                ;
+        };
+
+        s_right5: s_right5 {
+            label = "ZM_s_right5";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp LSHFT>
+                , <&macro_tap &kp RIGHT &kp RIGHT &kp RIGHT &kp RIGHT &kp RIGHT>
+                , <&macro_release &kp LSHFT>
+                ;
+        };
+
+        s_left5: s_left5 {
+            label = "ZM_s_left5";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp LSHFT>
+                , <&macro_tap &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT>
+                , <&macro_release &kp LSHFT>
+                ;
+        };
+
+        s_right20: s_right20 {
+            label = "ZM_s_right20";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp LSHFT>
+                , <&macro_tap &kp RIGHT &kp RIGHT &kp RIGHT &kp RIGHT &kp RIGHT &kp RIGHT &kp RIGHT &kp RIGHT &kp RIGHT &kp RIGHT &kp RIGHT &kp RIGHT &kp RIGHT &kp RIGHT &kp RIGHT &kp RIGHT &kp RIGHT &kp RIGHT &kp RIGHT &kp RIGHT>
+                , <&macro_release &kp LSHFT>
+                ;
+        };
+
+        s_left20: s_left20 {
+            label = "ZM_s_left20";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp LSHFT>
+                , <&macro_tap &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT>
+                , <&macro_release &kp LSHFT>
+                ;
+        };
+
+        // (){改行}{↑}
+        kakko5: kakko5 {
+            label = "ZM_kakko5";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <50>;
+            tap-ms = <50>;
+            bindings
+                = <&macro_tap &kakko5l &kakko5r &kp UP>
+                ;
+        };
+
+        // 『』{改行}{↑}
+        kakko2: kakko2 {
+            label = "ZM_kakko2";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_tap &kakko2l &kakko2r &kp UP>
+                ;
+        };
+
+        // 「」{改行}{↑}
+        kakko1: kakko1 {
+            label = "ZM_kakko1";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_tap &kakko1l &kakko1r &kp UP>
+                ;
+        };
+
+        // 《》{改行}{↑}
+        kakko4: kakko4 {
+            label = "ZM_kakko4";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_tap &kakko4l &kakko4r &kp UP>
+                ;
+        };
+
+        // 【】{改行}{↑}
+        kakko3: kakko3 {
+            label = "ZM_kakko3";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_tap &kakko3l &kakko3r &kp UP>
+                ;
+        };
+
+    };
+
+    combos {
+        compatible = "zmk,combos";
+        combo_ng_on {
+            timeout-ms = <300>;
+            key-positions = <15 16>;
+            bindings = <&ng_on>;
+        };
+        combo_ng_off {
+            timeout-ms = <300>;
+            key-positions = <13 14>;
+            bindings = <&ng_off>;
+        };
+        combo_henshu1_right {
+            timeout-ms = <300>;
+            key-positions = <12 13>;
+            bindings = <&mo 5>;
+        };
+        combo_henshu1_left {
+            timeout-ms = <300>;
+            key-positions = <16 17>;
+            bindings = <&mo 5>;
+        };
+        combo_henshu2_right {
+            timeout-ms = <300>;
+            key-positions = <22 23>;
+            bindings = <&mo 6>;
+        };
+        combo_henshu2_left {
+            timeout-ms = <300>;
+            key-positions = <26 27>;
+            bindings = <&mo 6>;
+        };
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+
+        default_layer {
+            bindings = <
+            // +----------+----------+----------+----------+----------+----------+----------+----------+----------+----------
+                &kp Q      &kp W      &kp E      &kp R      &kp T      &kp Y      &kp U      &kp I      &kp O      &kp P
+                &kp A      &kp S      &kp D      &kp F      &kp G      &kp H      &kp J      &kp K      &kp L      &kp SEMI
+                &kp Z      &kp X      &kp C      &kp V      &kp B      &kp N      &kp M      &kp COMMA  &kp DOT    &kp SLASH
+                                      &kp LSHIFT &mo LOWER  &kp SPACE  &kp ENTER  &mo RAISE  &kp RCTRL
+                >;
+        };
+
+        naginata_layer {
+            bindings = <
+            // +----------+----------+----------+----------+----------+----------+----------+----------+----------+----------
+                &ng Q      &ng W      &ng E      &ng R      &ng T      &ng Y      &ng U      &ng I      &ng O      &ng P
+                &ng A      &ng S      &ng D      &ng F      &ng G      &ng H      &ng J      &ng K      &ng L      &ng SEMI
+                &ng Z      &ng X      &ng C      &ng V      &ng B      &ng N      &ng M      &ng COMMA  &ng DOT    &ng SLASH
+                                      &kp LSHIFT &mo LOWER  &ng SPACE  &ng ENTER  &mo RAISE  &kp RCTRL
+                >;
+        };
+ 
+        lower_layer {
+            bindings = <
+            // +----------+----------+----------+----------+----------+----------+----------+----------+----------+----------
+                &kp TAB    &kp COLON  &kp SEMI   &kp DQT    &kp SQT    &kp SLASH  &kp N7     &kp N8     &kp N9     &kp MINUS
+                &kp ESC    &kp LBKT   &kp LBRC   &kp LPAR   &none      &kp ASTRK  &kp N4     &kp N5     &kp N6     &kp PLUS
+                &none      &kp RBKT   &kp RBRC   &kp RPAR   &none      &kp N0     &kp N1     &kp N2     &kp N3     &kp EQUAL     
+                                      &trans     &trans     &trans     &trans     &trans     &trans
+                >;
+        };
+
+        raise_layer {
+            bindings = <
+            // +----------+----------+----------+----------+----------+----------+----------+----------+----------+----------
+                &kp TILDE  &kp AT     &kp HASH   &kp DLLR   &kp LG(X)  &kp LG(Z)   &kp HOME   &kp UP     &kp END    &kp BSPC
+                &kp CARET  &kp AMPS   &kp QMARK  &kp PRCNT  &kp LG(C)  &kp LG(S)   &kp LEFT   &kp DOWN   &kp RIGHT  &kp DEL
+                &kp GRAVE  &kp PIPE   &kp EXCL   &kp UNDER  &kp LG(V)  &kp LG(Y)   &none      &none      &none      &none
+                                      &trans     &trans     &trans     &trans      &trans     &trans
+                >;
+        };
+
+        adjust_layer {
+            bindings = <
+            // +---------- +----------+----------+----------+----------+----------+----------+----------+----------+----------
+                &bootloader &bt BT_NXT &none      &none      &none      &none      &kp F7     &kp F8     &kp F9     &bootloader 
+                &sys_reset  &bt BT_PRV &none      &none      &ng_off    &ng_on     &kp F4     &kp F5     &kp F6     &sys_reset  
+                &bt BT_CLR  &none      &none      &none      &none      &kp F10    &kp F1     &kp F2     &kp F3     &none
+                                       &trans     &trans     &trans     &trans     &trans     &trans
+                >;
+        };
+
+        // ^{End}    |『』{改行}{↑}|/*ディ*/|^s            |・            ||||||||
+        // ……{改行}|(){改行}{↑}  |？{改行}|「」{改行}{↑}|《》{改行}{↑}||||||||
+        // ――{改行}|【】{改行}{↑}|！{改行}|{改行}{↓}    |{改行}{←}    |||||||
+
+        // |||||{Home}      |+{End}{BS}|{vk1Csc079}|{Del}  |{Esc 3}|  |  |
+        // |||||{Enter}{End}|{↑}      |+{↑}      |+{↑ 7}|^i     |  |  |
+        // |||||{End}       |{↓}      |+{↓}      |+{↓ 7}|^u     |  |
+
+        henshu1_layer {
+            bindings = <
+            // +---------- +----------+----------   +----------+----------+----------+----------+----------　+----------+----------
+                &kp LC(END) &kakko2    &dhi          &kp LC(S)  &nagaguro  &kp HOME   &s_end_bs  &kp INT4     &kp DEL    &esc3
+                &tenten     &kakko5    &kp LS(SLASH) &kakko1    &kakko4    &ent_end   &kp UP     &kp LS(UP)   &s_up7     &kp LC(I)
+                &zhyphen    &kakko3    &kp LS(N1)    &none      &none      &kp END    &kp DOWN   &kp LS(DOWN) &s_down7   &kp LC(U)
+                                       &trans        &trans     &trans     &trans     &trans     &trans
+                >;
+        };
+
+        // {Home}{→}{End}{Del 4}{←}      |^x『^v』{改行}{Space}+{↑}^x|{Home}{改行}{Space 3}{←}|{Space 3}                      |〇{改行}                                ||||||||
+        // {Home}{→}{End}{Del 2}{←}      |^x(^v){改行}{Space}+{↑}^x  |{Home}{改行}{Space 1}{←}|^x「^v」{改行}{Space}+{↑}^x   |^x｜{改行}^v《》{改行}{↑}{Space}+{↑}^x||||||||
+        // 　　　×　　　×　　　×{改行 2}|^x【^v】{改行}{Space}+{↑}^x|／{改行}                 |{改行}{End}{改行}「」{改行}{↑}|{改行}{End}{改行}{Space}                |||||||
+
+        // |||||+{Home}|^x  |^v   |^y      |^z      |  |  |
+        // |||||^c     |{→}|+{→}|+{→ 5} |+{→ 20}|  |  |
+        // |||||+{End} |{←}|+{←}|+{← 5} |+{← 20}|  |
+
+        henshu2_layer {
+            bindings = <
+            // +----------+----------+----------+----------+----------+----------  +----------+----------   +----------+----------
+                &none      &none      &none      &none      &maru      &kp LS(HOME) &kp LC(X)  &kp LC(V)     &kp LC(Y)  &kp LC(Z)      
+                &none      &none      &none      &none      &none      &kp LC(C)    &kp RIGHT  &kp LS(RIGHT) &s_right5  &s_right20      
+                &none      &none      &none      &none      &none      &kp LS(END)  &kp LEFT   &kp LS(LEFT)  &s_left5   &s_left20 
+                                      &trans     &trans     &trans     &trans       &trans     &trans
+                >;
+        };
+
+    };
+};
+
+// ZMK_UNICODE_SINGLE(nagaguro, N3, N0, F, B) // ・
+// ZMK_UNICODE_SINGLE(tenten,   N2, N0, N2, N6) // …
+// ZMK_UNICODE_SINGLE(zhyphen,  N2, N0, N1, N5) // ―
+// ZMK_UNICODE_SINGLE(maru,     N3, N0, N0, N7) // 〇
+// ZMK_UNICODE_SINGLE(batsu,    C, N3, N9, N7) // ×
+// ZMK_UNICODE_SINGLE(tatebo,    F, F, N5, C) // ｜
+// ZMK_UNICODE_SINGLE(kakko1l,  N3, N0, N0, C) // 「
+// ZMK_UNICODE_SINGLE(kakko1r,  N3, N0, N0, D) // 」
+// ZMK_UNICODE_SINGLE(kakko2l,  N3, N0, N0, E) // 『
+// ZMK_UNICODE_SINGLE(kakko2r,  N3, N0, N0, F) // 』
+// ZMK_UNICODE_SINGLE(kakko3l,  N3, N0, N1, N0) // 【
+// ZMK_UNICODE_SINGLE(kakko3r,  N3, N0, N1, N1) // 】
+// ZMK_UNICODE_SINGLE(kakko4l,  N3, N0, N0, A) // 《
+// ZMK_UNICODE_SINGLE(kakko4r,  N3, N0, N0, B) // 》
+// ZMK_UNICODE_SINGLE(kakko5l,  F, F, N0, N8) // （
+// ZMK_UNICODE_SINGLE(kakko5r,  F, F, N0, N9) // ）
