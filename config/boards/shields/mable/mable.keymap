@@ -25,7 +25,7 @@
 
     macros {
         ng_on: ng_on {
-            label = "ZM_ng_on";
+//            label = "ZM_ng_on";
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings
@@ -33,7 +33,7 @@
                 ;
         };
         ng_off: ng_off {
-            label = "ZM_ng_off";
+//            label = "ZM_ng_off";
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings
