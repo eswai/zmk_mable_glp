@@ -1,3 +1,5 @@
+#include <behaviors/rgbled_widget.dtsi>
+
 #define ZMK_BEHAVIORS_OMIT_KT
 
 #undef ZMK_BEHAVIORS_KEEP_ALL
@@ -37,8 +39,8 @@
             bindings = <
             // +-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+----------
                 &kp TAB     &kp JP_COLON  &kp JP_SEMI   &kp JP_DQT    &kp SQT    &kp JP_SLASH  &kp N7     &kp N8     &kp N9     &kp JP_MINUS
-                &kp ESC     &kp JP_LBKT   &kp JP_LBRC   &kp JP_LPAR   &none      &kp JP_ASTRK  &kp N4     &kp N5     &kp N6     &kp JP_PLUS
-               &bootloader  &kp JP_RBKT   &kp JP_RBRC   &kp JP_RPAR   &none      &kp N0        &kp N1     &kp N2     &kp N3     &kp JP_EQUAL     
+                &kp ESC     &kp JP_LBKT   &kp JP_LBRC   &kp JP_LPAR   &ind_bat   &kp JP_ASTRK  &kp N4     &kp N5     &kp N6     &kp JP_PLUS
+               &bootloader  &kp JP_RBKT   &kp JP_RBRC   &kp JP_RPAR   &ind_con   &kp N0        &kp N1     &kp N2     &kp N3     &kp JP_EQUAL     
                                           &trans        &trans        &trans     &trans        &trans     &trans
                 >;
         };
