@@ -1,5 +1,8 @@
 #include <behaviors/rgbled_widget.dtsi>
 
+#define HOST_OS 2
+#include "zmk-helpers/helper.h"
+
 #define ZMK_BEHAVIORS_OMIT_KT
 
 #undef ZMK_BEHAVIORS_KEEP_ALL
@@ -20,6 +23,8 @@
 
 #define CONFIG_ZMK_MACRO_DEFAULT_WAIT_MS 40
 #define CONFIG_ZMK_MACRO_DEFAULT_TAP_MS 40
+
+ZMK_UNICODE_SINGLE(euro_sign, N2, N0, A, C)
 
 / {
     keymap {
@@ -50,7 +55,7 @@
             // +----------+----------+----------+----------+----------+----------+----------+----------+----------+----------
                 &kp JP_TILDE  &kp JP_AT     &kp JP_HASH   &kp JP_DLLR   &kp LG(X)  &kp LG(Z)   &kp HOME   &kp UP     &kp END    &kp BSPC
                 &kp JP_CARET  &kp JP_AMPS   &kp JP_QMARK  &kp JP_PRCNT  &kp LG(C)  &kp LG(S)   &kp LEFT   &kp DOWN   &kp RIGHT  &kp DEL
-                &kp JP_GRAVE  &kp JP_PIPE   &kp JP_EXCL   &kp JP_UNDER  &kp LG(V)  &kp LG(Y)   &none      &bt BT_CLR &studio_unlock &bootloader
+                &kp JP_GRAVE  &kp JP_PIPE   &kp JP_EXCL   &kp JP_UNDER  &kp LG(V)  &kp LG(Y)   &euro_sign &bt BT_CLR &studio_unlock &bootloader
                                             &trans        &trans        &trans     &trans      &trans     &trans
                 >;
         };
