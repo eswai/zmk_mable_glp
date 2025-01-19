@@ -1,4 +1,5 @@
 #include <behaviors/rgbled_widget.dtsi>
+#include <behaviors/naginata.dtsi>
 
 #define HOST_OS 2
 #include "zmk-helpers/helper.h"
@@ -18,8 +19,9 @@
 #include "keycode_japanese.h"
 
 #define DEFAULT  0
-#define LOWER    1
-#define RAISE    2
+#define NAGINATA 1
+#define LOWER    2
+#define RAISE    3
 
 #define CONFIG_ZMK_MACRO_DEFAULT_WAIT_MS 40
 #define CONFIG_ZMK_MACRO_DEFAULT_TAP_MS 40
@@ -27,6 +29,40 @@
 ZMK_UNICODE_SINGLE(euro_sign, N2, N0, A, C)
 
 / {
+
+    macros {
+        ng_on: ng_on {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_tap &kp LANGUAGE_1 &kp INTERNATIONAL_4 &to 1>
+                ;
+        };
+        ng_off: ng_off {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_tap &kp LANGUAGE_2 &kp INTERNATIONAL_5 &to 0>
+                ;
+        };
+    };
+
+    combos {
+        compatible = "zmk,combos";
+        combo_ng_on {
+            timeout-ms = <300>;
+            key-positions = <15 16>;
+            bindings = <&ng_on>;
+            layers = <0>;
+        };
+        combo_ng_off {
+            timeout-ms = <300>;
+            key-positions = <13 14>;
+            bindings = <&ng_off>;
+            layers = <0 1>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
@@ -40,6 +76,16 @@ ZMK_UNICODE_SINGLE(euro_sign, N2, N0, A, C)
                 >;
         };
 
+        naginata_layer {
+            bindings = <
+            // +----------+----------+----------+----------+----------+----------+----------+----------+----------+----------
+                &ng Q      &ng W      &ng E      &ng R      &ng T      &ng Y      &ng U      &ng I      &ng O      &ng P
+                &ng A      &ng S      &ng D      &ng F      &ng G      &ng H      &ng J      &ng K      &ng L      &ng SEMI
+                &ng Z      &ng X      &ng C      &ng V      &ng B      &ng N      &ng M      &ng COMMA  &ng DOT    &ng SLASH
+                                      &kp LSHIFT &mo LOWER  &ng SPACE  &ng ENTER  &mo RAISE  &kp RCTRL
+                >;
+        };
+ 
         lower_layer {
             bindings = <
             // +-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+----------
